@@ -105,8 +105,6 @@ public class CharReader implements Closeable {
     public String nextString() {
         pointer.moveForward();
         if (!pointer.isIndexOut()) {
-//            char c = text.charAt(pointer.getIndex());
-//
             boolean valueContinue =true;
             pointer.moveBack();
             StringBuilder value= new StringBuilder();

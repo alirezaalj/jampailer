@@ -10,6 +10,7 @@
     <module>lexical-analysis</module>
     <module>jampailer-core</module>
       <module>lexical-gui</module>
+      <module>syntax-analysis</module>
   </modules>
   <packaging>pom</packaging>
 

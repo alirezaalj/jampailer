@@ -52,7 +52,7 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer{
             log.debug("char: {} , pointer: {}", c, pointer);
             switch (state) {
                 case read : {
-                    if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+                    if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_') {
                         charReader.pointerBack();
                         // word read state
                         state = State.word;
@@ -71,6 +71,9 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer{
                         if (token != null) {
                             log.debug("char: {} , token: {}", c, token);
                             lexicalList.add(lexicalGenerate(Flag.character,token,activePointer(), String.valueOf(c)));
+                        }else {
+                            log.debug("char: {} , token: {}", c, Token.INVALID);
+                            lexicalList.add(lexicalGenerate(Flag.character,Token.INVALID,activePointer(),String.valueOf(c)));
                         }
                     }
                     break;
@@ -166,7 +169,6 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer{
         return lexicalList;
     }
 
-
     private Pointer activePointer(){
         return charReader.getPointer();
     }
@@ -178,6 +180,7 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer{
                 return true;
             } else if (c == '*') {
                 readToCommentEnd();
+                return true;
             } else {
                 charReader.pointerBack();
                 return false;

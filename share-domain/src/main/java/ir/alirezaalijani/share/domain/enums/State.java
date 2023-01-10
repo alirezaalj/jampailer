@@ -8,8 +8,7 @@ package ir.alirezaalijani.share.domain.enums;
 public enum State {
     word,
     digit,
-    S1,
-    S2,
-    S3,
-    string_char, operation, read
+    string_char,
+    operation,
+    read
 }
